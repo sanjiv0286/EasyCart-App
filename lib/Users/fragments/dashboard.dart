@@ -89,9 +89,9 @@ class DashboardOfFragments extends StatelessWidget {
   DashboardOfFragments({super.key});
 
   final List<Widget> fragmentScreens = [
-    const HomeFragmentScreen(),
-    const FavoritesFragmentScreen(),
-    const OrderFragmentScreen(),
+    HomeFragmentScreen(),
+    FavoritesFragmentScreen(),
+    OrderFragmentScreen(),
     ProfileFragmentScreen(),
   ];
 
@@ -131,11 +131,14 @@ class DashboardOfFragments extends StatelessWidget {
         return Scaffold(
             backgroundColor: Colors.black,
             // appBar: AppBar(
-            //   title: const Text(
-            //     'Dashboard Screen',
-            //     style: TextStyle(color: Colors.white),
+            //   automaticallyImplyLeading: false,
+            //   title: const Center(
+            //     child: Text(
+            //       'Clothes Item',
+            //       style: TextStyle(color: Colors.black87),
+            //     ),
             //   ),
-            //   backgroundColor: Colors.blue,
+            //   backgroundColor: Colors.white,
             // ),
             body: SafeArea(
               child: Obx(() => fragmentScreens[_indexNumber.value]),

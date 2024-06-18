@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'dart:convert';
 import 'dart:io';
 import 'package:easymart/Users/authentication/login.dart';
@@ -27,7 +28,7 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
   var colorsController = TextEditingController();
   var descriptionController = TextEditingController();
   var imageLink = "";
-
+  var statusMessage = "";
   //defaultScreen methods
   captureImageWithPhoneCamera() async {
     pickedImageXFile = await _picker.pickImage(source: ImageSource.camera);
@@ -96,8 +97,8 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
           );
         });
   }
-  //defaultScreen methods ends here
 
+  //defaultScreen methods ends here
   Widget defaultScreen() {
     return Scaffold(
       appBar: AppBar(
@@ -188,33 +189,91 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
     );
   }
 
-  //uploadItemFormScreen methods
-  uploadItemImage() async {
-    var requestImgurApi = http.MultipartRequest(
-        "POST", Uri.parse("https://api.imgur.com/3/image"));
+  // ***************************************************************
+  Future<void> uploadItemImage() async {
+    try {
+      // *Prepare the request for the Imgur API
+      var requestImgurApi = http.MultipartRequest(
+          "POST", Uri.parse("https://api.imgur.com/3/image"));
 
-    String imageName = DateTime.now().millisecondsSinceEpoch.toString();
-    requestImgurApi.fields['title'] = imageName;
-    requestImgurApi.headers['Authorization'] = "Client-ID " "6ca0d6456311e4d";
+      // *Generate a unique image name based on the current timestamp
+      String imageName = DateTime.now().millisecondsSinceEpoch.toString();
 
-    var imageFile = await http.MultipartFile.fromPath(
-      'image',
-      pickedImageXFile!.path,
-      filename: imageName,
-    );
+      // *Set request fields and headers
+      requestImgurApi.fields['title'] = imageName;
+      requestImgurApi.headers['Authorization'] = "Client-ID 912ab96058a9a2b";
 
-    requestImgurApi.files.add(imageFile);
-    var responseFromImgurApi = await requestImgurApi.send();
+      // *Create a multipart file from the selected image
+      var imageFile = await http.MultipartFile.fromPath(
+        'image',
+        pickedImageXFile!.path,
+        filename: imageName,
+      );
 
-    var responseDataFromImgurApi = await responseFromImgurApi.stream.toBytes();
-    var resultFromImgurApi = String.fromCharCodes(responseDataFromImgurApi);
+      // *Add the image file to the request
+      requestImgurApi.files.add(imageFile);
 
-    Map<String, dynamic> jsonRes = json.decode(resultFromImgurApi);
-    imageLink = (jsonRes["data"]["link"]).toString();
-    // String deleteHash = (jsonRes["data"]["deletehash"]).toString();
+      // *Send the request to the Imgur API
+      var responseFromImgurApi = await requestImgurApi.send();
 
-    saveItemInfoToDatabase();
+      // *Read the response data from the Imgur API
+      var responseDataFromImgurApi =
+          await responseFromImgurApi.stream.toBytes();
+      var resultFromImgurApi = String.fromCharCodes(responseDataFromImgurApi);
+      print('Raw response from Imgur API: $resultFromImgurApi');
+
+      // *Check if the response status code is 200 (success)
+      if (responseFromImgurApi.statusCode == 200) {
+        // *Parse the JSON response
+        Map<String, dynamic> jsonRes = json.decode(resultFromImgurApi);
+        imageLink = (jsonRes["data"]["link"]).toString();
+        String deleteHash = (jsonRes["data"]["deletehash"]).toString();
+
+        //* Save the item information to the database
+        saveItemInfoToDatabase();
+
+        print('Image link: $imageLink');
+        print('Delete hash: $deleteHash');
+
+        // Fluttertoast.showToast(
+        //   msg: "Image uploaded successfully!", //$resultFromImgurApi",
+        //   toastLength: Toast.LENGTH_SHORT,
+        //   gravity: ToastGravity.BOTTOM,
+        // );
+      } else {
+        // *Handle non-successful response
+        // print(
+        //     'Failed to upload image. Status code: ${responseFromImgurApi.statusCode}');
+        // print('Response: $resultFromImgurApi');
+
+        // setState(() {
+        //   statusMessage =
+        //       "Failed to upload image. Status code: ${responseFromImgurApi.statusCode}";
+        // });
+
+        Fluttertoast.showToast(
+          msg:
+              "Failed to upload image. Status code: ${responseFromImgurApi.statusCode}",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+        );
+      }
+    } catch (e) {
+      // *Log any errors that occur during the request
+      // print('Error uploading image: $e');
+
+      // setState(() {
+      //   statusMessage = "Error uploading image: $e";
+      // });
+
+      Fluttertoast.showToast(
+        msg: "Error uploading image: $e",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
   }
+  // ***************************************************************
 
   saveItemInfoToDatabase() async {
     List<String> tagsList = tagsController.text.split(',');
@@ -282,7 +341,12 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
           ),
         ),
         automaticallyImplyLeading: false,
-        title: const Text("Upload Form"),
+        title: const Text(
+          "Upload Form",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
@@ -303,21 +367,21 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
             Icons.clear,
           ),
         ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Fluttertoast.showToast(msg: "Uploading now...");
+        // actions: [
+        //   TextButton(
+        //     onPressed: () {
+        //       Fluttertoast.showToast(msg: "Uploading now...");
 
-              uploadItemImage();
-            },
-            child: const Text(
-              "Done",
-              style: TextStyle(
-                color: Colors.green,
-              ),
-            ),
-          ),
-        ],
+        //       uploadItemImage();
+        //     },
+        //     child: const Text(
+        //       "Done",
+        //       style: TextStyle(
+        //         color: Colors.green,
+        //       ),
+        //     ),
+        //   ),
+        // ],
       ),
       body: ListView(
         children: [
@@ -356,7 +420,7 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
                 padding: const EdgeInsets.fromLTRB(30, 30, 30, 8),
                 child: Column(
                   children: [
-                    //email-password-login button
+                    //*email-password-login button
                     Form(
                       key: formKey,
                       child: Column(

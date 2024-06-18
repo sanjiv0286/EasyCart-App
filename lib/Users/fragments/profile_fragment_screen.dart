@@ -1,18 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class ProfileFragmentScreen extends StatelessWidget {
-//   const ProfileFragmentScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Scaffold(
-//         body: Center(
-//             child: Text(
-//       "Profile Fragment Screen",
-//     )));
-//   }
-// }
-
 import 'package:easymart/Users/UserPreferences/current_user.dart';
 import 'package:easymart/Users/UserPreferences/user_preferences.dart';
 import 'package:easymart/Users/authentication/login.dart';
@@ -20,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileFragmentScreen extends StatelessWidget {
-  final CurrentUser _currentUser = Get.put(CurrentUser());
+  final CurrentUser currentUser = Get.put(CurrentUser());
 
   ProfileFragmentScreen({super.key});
 
@@ -116,19 +101,16 @@ class ProfileFragmentScreen extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        userInfoItemProfile(Icons.person, _currentUser.user.user_name??'User Name'),
+        userInfoItemProfile(
+            Icons.person, currentUser.user.user_name?? 'User Name'), //
         const SizedBox(
           height: 20,
         ),
-        userInfoItemProfile(Icons.email, _currentUser.user.user_email??'User Email'),
-        // userInfoItemProfile(
-        //     Icons.person, _currentUser.user.user_name ?? 'Default Name'),
-        // const SizedBox(
-        //   height: 20,
-        // ),
-        // userInfoItemProfile(
-        //     Icons.email, _currentUser.user.user_email ?? 'Default Email'),
+        userInfoItemProfile(
+            Icons.email, currentUser.user.user_email?? 'User Email'), // 
+        // *************************
 
+// *********************************
         const SizedBox(
           height: 20,
         ),
@@ -161,3 +143,4 @@ class ProfileFragmentScreen extends StatelessWidget {
     );
   }
 }
+// ***********************************

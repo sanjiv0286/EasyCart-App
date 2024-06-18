@@ -1,106 +1,144 @@
-// import 'package:flutter/material.dart';
-
-// class FavoritesFragmentScreen extends StatelessWidget {
-//   const FavoritesFragmentScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Scaffold(
-//         body: Center(
-//             child: Text(
-//       "Favorites Fragment Screen",
-//     )));
-//   }
-// }
-// *************************************************************
 import 'dart:convert';
 import 'package:easymart/Users/Model/clothes.dart';
-import 'package:easymart/Users/Model/favorite.dart';
-import 'package:easymart/Users/UserPreferences/current_user.dart';
+import 'package:easymart/Users/item/item_details_screen.dart';
 import 'package:easymart/api_connecction/api_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+// import '../cart/cart_list_screen.dart';
 import 'package:http/http.dart' as http;
-import '../item/item_details_screen.dart';
 
-class FavoritesFragmentScreen extends StatelessWidget {
-  final currentOnlineUser = Get.put(CurrentUser());
+class SearchItems extends StatefulWidget {
+  final String? typedKeyWords;
 
-   FavoritesFragmentScreen({super.key});
+  const SearchItems({
+    super.key,
+    this.typedKeyWords,
+  });
 
-  Future<List<Favorite>> getCurrentUserFavoriteList() async {
-    List<Favorite> favoriteListOfCurrentUser = [];
+  @override
+  State<SearchItems> createState() => _SearchItemsState();
+}
 
-    try {
-      var res = await http.post(Uri.parse(API.readFavorite), body: {
-        "user_id": currentOnlineUser.user.user_id.toString(),
-      });
+class _SearchItemsState extends State<SearchItems> {
+  TextEditingController searchController = TextEditingController();
 
-      if (res.statusCode == 200) {
-        var responseBodyOfCurrentUserFavoriteListItems = jsonDecode(res.body);
+  Future<List<Clothes>> readSearchRecordsFound() async {
+    List<Clothes> clothesSearchList = [];
 
-        if (responseBodyOfCurrentUserFavoriteListItems['success'] == true) {
-          for (var eachCurrentUserFavoriteItemData
-              in (responseBodyOfCurrentUserFavoriteListItems[
-                  'currentUserFavoriteData'] as List)) {
-            favoriteListOfCurrentUser
-                .add(Favorite.fromJson(eachCurrentUserFavoriteItemData));
+    if (searchController.text != "") {
+      try {
+        var res = await http.post(Uri.parse(API.searchItems), body: {
+          "typedKeyWords": searchController.text,
+        });
+
+        if (res.statusCode == 200) {
+          var responseBodyOfSearchItems = jsonDecode(res.body);
+
+          if (responseBodyOfSearchItems['success'] == true) {
+            (responseBodyOfSearchItems['itemsFoundData'] as List)
+                // ignore: avoid_function_literals_in_foreach_calls
+                .forEach((eachItemData) {
+              clothesSearchList.add(Clothes.fromJson(eachItemData));
+            });
           }
+        } else {
+          Fluttertoast.showToast(msg: "Status Code is not 200");
         }
-      } else {
-        Fluttertoast.showToast(msg: "Status Code is not 200");
+      } catch (errorMsg) {
+        Fluttertoast.showToast(msg: "Error:: $errorMsg");
       }
-    } catch (errorMsg) {
-      Fluttertoast.showToast(msg: "Error:: $errorMsg");
     }
 
-    return favoriteListOfCurrentUser;
+    return clothesSearchList;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    searchController.text = widget.typedKeyWords!;
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 24, 8, 8),
-            child: Text(
-              "My Favorite List:",
-              style: TextStyle(
-                color: Colors.purpleAccent,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.white24,
+        title: showSearchBarWidget(),
+        titleSpacing: 0,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.purpleAccent,
+          ),
+        ),
+      ),
+      body: searchItemDesignWidget(context),
+    );
+  }
+
+  Widget showSearchBarWidget() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18),
+      child: TextField(
+        style: const TextStyle(color: Colors.white),
+        controller: searchController,
+        decoration: InputDecoration(
+          prefixIcon: IconButton(
+            onPressed: () {
+              setState(() {});
+            },
+            icon: const Icon(
+              Icons.search,
+              color: Colors.purpleAccent,
             ),
           ),
+          hintText: "Search best clothes here...",
+          hintStyle: const TextStyle(
+            color: Colors.grey,
+            fontSize: 12,
+          ),
+          suffixIcon: IconButton(
+            onPressed: () {
+              searchController.clear();
 
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 24, 8, 8),
-            child: Text(
-              "Order these best clothes for yourself now.",
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
-              ),
+              setState(() {});
+            },
+            icon: const Icon(
+              Icons.close,
+              color: Colors.purpleAccent,
             ),
           ),
-
-          const SizedBox(height: 24),
-
-          //displaying favoriteList
-          favoriteListItemDesignWidget(context),
-        ],
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              width: 2,
+              color: Colors.purple,
+            ),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              width: 2,
+              color: Colors.purpleAccent,
+            ),
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 10,
+          ),
+        ),
       ),
     );
   }
 
-  favoriteListItemDesignWidget(context) {
+  searchItemDesignWidget(context) {
     return FutureBuilder(
-        future: getCurrentUserFavoriteList(),
-        builder: (context, AsyncSnapshot<List<Favorite>> dataSnapShot) {
+        future: readSearchRecordsFound(),
+        builder: (context, AsyncSnapshot<List<Clothes>> dataSnapShot) {
           if (dataSnapShot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -109,10 +147,7 @@ class FavoritesFragmentScreen extends StatelessWidget {
           if (dataSnapShot.data == null) {
             return const Center(
               child: Text(
-                "No favorite item found",
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
+                "No Trending item found",
               ),
             );
           }
@@ -123,23 +158,10 @@ class FavoritesFragmentScreen extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                Favorite eachFavoriteItemRecord = dataSnapShot.data![index];
-
-                Clothes clickedClothItem = Clothes(
-                  item_id: eachFavoriteItemRecord.item_id,
-                  colors: eachFavoriteItemRecord.colors,
-                  image: eachFavoriteItemRecord.image,
-                  name: eachFavoriteItemRecord.name,
-                  price: eachFavoriteItemRecord.price,
-                  rating: eachFavoriteItemRecord.rating,
-                  sizes: eachFavoriteItemRecord.sizes,
-                  description: eachFavoriteItemRecord.description,
-                  tags: eachFavoriteItemRecord.tags,
-                );
-
+                Clothes eachClothItemRecord = dataSnapShot.data![index];
                 return GestureDetector(
                   onTap: () {
-                    Get.to(ItemDetailsScreen(itemInfo: clickedClothItem));
+                    Get.to(ItemDetailsScreen(itemInfo: eachClothItemRecord));
                   },
                   child: Container(
                     margin: EdgeInsets.fromLTRB(
@@ -175,7 +197,7 @@ class FavoritesFragmentScreen extends StatelessWidget {
                                     //name
                                     Expanded(
                                       child: Text(
-                                        eachFavoriteItemRecord.name!,
+                                        eachClothItemRecord.name!,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(
@@ -191,7 +213,7 @@ class FavoritesFragmentScreen extends StatelessWidget {
                                       padding: const EdgeInsets.only(
                                           left: 12, right: 12),
                                       child: Text(
-                                        "\$ ${eachFavoriteItemRecord.price}",
+                                        "\$ ${eachClothItemRecord.price}",
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(
@@ -210,7 +232,7 @@ class FavoritesFragmentScreen extends StatelessWidget {
 
                                 //tags
                                 Text(
-                                  "Tags: \n${eachFavoriteItemRecord.tags.toString().replaceAll("[", "").replaceAll("]", "")}",
+                                  "Tags: \n${eachClothItemRecord.tags.toString().replaceAll("[", "").replaceAll("]", "")}",
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
@@ -236,7 +258,7 @@ class FavoritesFragmentScreen extends StatelessWidget {
                             placeholder:
                                 const AssetImage("images/place_holder.png"),
                             image: NetworkImage(
-                              eachFavoriteItemRecord.image!,
+                              eachClothItemRecord.image!,
                             ),
                             imageErrorBuilder:
                                 (context, error, stackTraceError) {

@@ -1,23 +1,7 @@
-// import 'package:flutter/material.dart';
-
-// class OrderFragmentScreen extends StatelessWidget {
-//   const OrderFragmentScreen({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Scaffold(
-//         body: Center(
-//             child: Text(
-//       "Orders Fragment Screen",
-//     )));
-//   }
-// }
-// **********************************************
 import 'dart:convert';
 
 import 'package:easymart/Users/Model/order.dart';
 import 'package:easymart/Users/UserPreferences/current_user.dart';
-import 'package:easymart/Users/order/history_screen.dart';
 import 'package:easymart/Users/order/order_details.dart';
 import 'package:easymart/api_connecction/api_connection.dart';
 import 'package:flutter/material.dart';
@@ -26,28 +10,25 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-class OrderFragmentScreen extends StatelessWidget {
+
+class AdminGetAllOrdersScreen extends StatelessWidget {
+  AdminGetAllOrdersScreen({super.key});
   final currentOnlineUser = Get.put(CurrentUser());
 
-  OrderFragmentScreen({super.key});
-
-  Future<List<Order>> getCurrentUserOrdersList() async {
-    List<Order> ordersListOfCurrentUser = [];
+  Future<List<Order>> getAllOrdersList() async {
+    List<Order> ordersList = [];
 
     try {
-      var res = await http.post(Uri.parse(API.readOrders), body: {
-        "currentOnlineUserID": currentOnlineUser.user.user_id.toString(),
-      });
+      var res = await http.post(Uri.parse(API.adminGetAllOrders), body: {});
 
       if (res.statusCode == 200) {
         var responseBodyOfCurrentUserOrdersList = jsonDecode(res.body);
 
         if (responseBodyOfCurrentUserOrdersList['success'] == true) {
-          for (var eachCurrentUserOrderData
-              in (responseBodyOfCurrentUserOrdersList['currentUserOrdersData']
+          for (var eachOrderData
+              in (responseBodyOfCurrentUserOrdersList['allOrdersData']
                   as List)) {
-            ordersListOfCurrentUser
-                .add(Order.fromJson(eachCurrentUserOrderData));
+            ordersList.add(Order.fromJson(eachOrderData));
           }
         }
       } else {
@@ -57,7 +38,7 @@ class OrderFragmentScreen extends StatelessWidget {
       Fluttertoast.showToast(msg: "Error:: $errorMsg");
     }
 
-    return ordersListOfCurrentUser;
+    return ordersList;
   }
 
   @override
@@ -72,7 +53,7 @@ class OrderFragmentScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 24, 8, 0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 //order icon image
                 // my orders
@@ -83,57 +64,28 @@ class OrderFragmentScreen extends StatelessWidget {
                       width: 140,
                     ),
                     const Text(
-                      "My Orders",
+                      "All New Orders",
                       style: TextStyle(
                         color: Colors.purpleAccent,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    //some info
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 30.0),
+                      child: Text(
+                        "Here are your successfully placed orders.",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-
-                //history icon image
-                // history
-                GestureDetector(
-                  onTap: () {
-                    //send user to orders history screen
-                    Get.to(HistoryScreen());
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          "images/history_icon.png",
-                          width: 45,
-                        ),
-                        const Text(
-                          "History",
-                          style: TextStyle(
-                            color: Colors.purpleAccent,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
               ],
-            ),
-          ),
-
-          //some info
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
-            child: Text(
-              "Here are your successfully placed orders.",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-              ),
             ),
           ),
 
@@ -148,7 +100,7 @@ class OrderFragmentScreen extends StatelessWidget {
 
   Widget displayOrdersList(context) {
     return FutureBuilder(
-      future: getCurrentUserOrdersList(),
+      future: getAllOrdersList(),
       builder: (context, AsyncSnapshot<List<Order>> dataSnapshot) {
         if (dataSnapshot.connectionState == ConnectionState.waiting) {
           return const Column(

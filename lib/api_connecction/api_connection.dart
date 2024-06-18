@@ -8,7 +8,7 @@
 //   static const validateEmail = "$hostConnect/user/validate_email.php";
 // }
 class API {
-  static const hostConnect = "http://192.168.47.21/api_clothes_store";
+  static const hostConnect = "http://192.168.1.66/api_clothes_store";
   static const hostConnectUser = "$hostConnect/user";
   static const hostConnectAdmin = "$hostConnect/admin";
   static const hostItem = "$hostConnect/items";
@@ -18,7 +18,7 @@ class API {
   static const hostOrder = "$hostConnect/order";
   static const hostImages = "$hostConnect/transactions_proof_images/";
 
-  //signUp-Login user
+  //*signUp-Login user
   static const validateEmail = "$hostConnectUser/validate_email.php";
   static const signUp = "$hostConnectUser/signup.php";
   static const login = "$hostConnectUser/login.php";
@@ -51,4 +51,5 @@ class API {
   static const addOrder = "$hostOrder/add.php";
   static const readOrders = "$hostOrder/read.php";
   static const updateStatus = "$hostOrder/update_status.php";
+  static const readHistory = "$hostOrder/read_history.php";
 }

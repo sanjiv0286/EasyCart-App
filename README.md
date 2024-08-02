@@ -15,27 +15,29 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
 - **Favorites**: Add items to a wishlist for future reference.
 - **Admin Portal**: Admin functionalities to manage orders and upload new items.
 
-## Demo
-<!--
-
-![kalamQuiz2](https://user-images.githubusercontent.com/48892208/102683677-ac19d100-41f8-11eb-9e8a-87d03c3460a1.gif)
-
--->
 
 
-### User Interface
+
+### App Icon
 
 <table>
  <td>
   <div>
     <img src="https://i.pinimg.com/564x/7a/2b/7e/7a2b7e0bb32c71f6be74a0cc47e796d9.jpg" width="350" height="350" alt="App">
   </div>
-  <div>AppIcon</div>
+  <div></div>
   
 </td>
 </table>
 <!--
 ![App Logo]()
+-->
+
+## Demo
+<!--
+
+![kalamQuiz2](https://user-images.githubusercontent.com/48892208/102683677-ac19d100-41f8-11eb-9e8a-87d03c3460a1.gif)
+
 -->
 
 ### Screens

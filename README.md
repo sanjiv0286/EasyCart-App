@@ -1,6 +1,6 @@
 # EasyCart - An Online Clothes Shop App
 
-**Technologies Used**: Flutter, Dart, PHP, SQL, MySQL, XAMPP local host server, REST API, GetX State Management
+<!-- **Technologies Used**: Flutter, Dart, PHP, SQL, MySQL, XAMPP local host server, REST API, GetX State Management -->
 
 ## Overview
 
@@ -16,6 +16,12 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
 - **Admin Portal**: Admin functionalities to manage orders and upload new items.
 
 ## Demo
+<!--
+
+![kalamQuiz2](https://user-images.githubusercontent.com/48892208/102683677-ac19d100-41f8-11eb-9e8a-87d03c3460a1.gif)
+
+-->
+
 
 ### User Interface
 
@@ -31,6 +37,50 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
 - **Favorites**: View and manage the wishlist items.
 - **Order History**: Track the status of past orders and view order details.
 - **Admin Dashboard**: Admin can view new orders, confirm and deliver orders, and upload new items.
+
+## Technologies Used
+
+- **Flutter**
+- **Dart**
+- **PHP**
+- **SQL**
+- **MySQL**
+- **XAMPP local host server**
+- **REST API**
+- **GetX State Management**
+- **Vs Code**
+
+## Screenshots
+<!--
+******************
+<table>
+ <td>
+  <div>
+    <img src="image/Kalamappicon.png" width="300" height="350" alt="App">
+  </div>
+  <div>AppIcon</div>
+  
+</td>
+ <tr>
+ <hr>
+  
+<!--   <td><img src= "image/Kalamappicon.png" width="300" height="350" alt= "AppIcon"></td> -->
+ <!--
+ ******************
+  <td><img src= "image/photo1.png" width="300" height="350"></td>
+  <td><img src = "image/photo2.png" width="300" height="350"></td>
+  <td><img src = "image/photo3.png" width="300" height="350"></td>
+</tr> 
+ </table>
+<hr>
+ 
+<table>
+ <tr>
+    <td><img src="image/photo4.png" width="800" height="500"></td>
+</tr>
+ </table>
+-->
+
 
 ## Installation
 

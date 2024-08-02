@@ -25,7 +25,18 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
 
 ### User Interface
 
-![App Logo](https://i.pinimg.com/564x/7a/2b/7e/7a2b7e0bb32c71f6be74a0cc47e796d9.jpg)
+<table>
+ <td>
+  <div>
+    <img src="https://i.pinimg.com/564x/7a/2b/7e/7a2b7e0bb32c71f6be74a0cc47e796d9.jpg" width="350" height="350" alt="App">
+  </div>
+  <div>AppIcon</div>
+  
+</td>
+</table>
+<!--
+![App Logo]()
+-->
 
 ### Screens
 

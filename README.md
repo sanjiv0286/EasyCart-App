@@ -22,6 +22,9 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
   </div>
 </td>
 </table>
+<!--
+![App Logo]()
+-->
 
 ## Demo
 
@@ -55,15 +58,35 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
 - **Vs Code**
 
 ## Screenshots
-
-
+<!--
+******************
+<table>
+ <td>
+  <div>
+    <img src="image/Kalamappicon.png" width="300" height="350" alt="App">
+  </div>
+  <div>AppIcon</div>
+  
+</td>
+ <tr>
+ <hr>
+  
+<!--   <td><img src= "image/Kalamappicon.png" width="300" height="350" alt= "AppIcon"></td> -->
+ <!--
+ ******************
+  <td><img src= "image/photo1.png" width="300" height="350"></td>
+  <td><img src = "image/photo2.png" width="300" height="350"></td>
+  <td><img src = "image/photo3.png" width="300" height="350"></td>
+</tr> 
+ </table>
 <hr>
- 
 <table>
  <tr>
-    <td><img src="image/photo4.png" width="800" height="500"></td>
+    <td><img src="screenshots/15.jpg" width="800" height="500"></td>
 </tr>
  </table>
+-->
+
 
 ## Installation
 

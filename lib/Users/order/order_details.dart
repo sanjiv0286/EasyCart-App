@@ -107,7 +107,16 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
         title: Text(
           DateFormat("dd MMMM, yyyy - hh:mm a")
               .format(widget.clickedOrderInfo!.dateTime!),
-          style: const TextStyle(fontSize: 14),
+          style: const TextStyle(fontSize: 14, color: Colors.white),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
         ),
         actions: [
           Padding(

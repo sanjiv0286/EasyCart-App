@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
-
 class AdminGetAllOrdersScreen extends StatelessWidget {
   AdminGetAllOrdersScreen({super.key});
   final currentOnlineUser = Get.put(CurrentUser());

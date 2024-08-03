@@ -38,7 +38,6 @@ class _LoginScreenState extends State<LoginScreen> {
           User userInfo = User.fromJson(resBodyOflogin["userdata"]);
           //* save user info to local storage using shared prefferrences
           await RememberUserPrefs.storeUserInfo(userInfo);
-
           Future.delayed(const Duration(milliseconds: 2000), () {
             Get.to(DashboardOfFragments());
           }); // Future.delayed

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 import 'dart:convert';
 import 'dart:io';
+import 'package:easymart/Admin/admin_get_all_orders.dart';
 import 'package:easymart/Users/authentication/login.dart';
 import 'package:easymart/api_connecction/api_connection.dart';
 import 'package:flutter/material.dart';
@@ -98,6 +99,49 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
         });
   }
 
+// **********************************
+
+  signOutAdmin() async {
+    await Get.dialog(
+      AlertDialog(
+        backgroundColor: Colors.grey,
+        title: const Text(
+          "Logout",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: const Text(
+          "Are you sure?\nyou want to logout from app?",
+        ),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: const Text(
+                "No",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              )),
+          TextButton(
+              onPressed: () {
+                Get.to(const LoginScreen());
+              },
+              child: const Text(
+                "Yes",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              )),
+        ],
+      ),
+    );
+  }
+
+// **************************************
   //defaultScreen methods ends here
   Widget defaultScreen() {
     return Scaffold(
@@ -115,7 +159,7 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
         automaticallyImplyLeading: false,
         title: GestureDetector(
           onTap: () {
-            // Get.to(AdminGetAllOrdersScreen());
+            Get.to(AdminGetAllOrdersScreen());
           },
           child: const Text(
             "New Orders",
@@ -130,7 +174,8 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(const LoginScreen());
+              // Get.to(const LoginScreen());
+              signOutAdmin();
             },
             icon: const Icon(
               Icons.logout,
@@ -139,6 +184,8 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
           ),
         ],
       ),
+
+      // *************************
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -365,6 +412,7 @@ class _AdminUploadItemsScreenState extends State<AdminUploadItemsScreen> {
           },
           icon: const Icon(
             Icons.clear,
+            color: Colors.white,
           ),
         ),
         // actions: [

@@ -66,6 +66,7 @@
 //     );
 //   }
 // }
+
 // ***************************************************************************
 import 'package:easymart/Users/UserPreferences/user_preferences.dart';
 import 'package:easymart/Users/fragments/dashboard.dart';
@@ -120,7 +121,7 @@ class _SplashScreenState extends State<SplashScreen> {
               return Center(child: Text('Error: ${dataSnapShot.error}'));
             } else if (dataSnapShot.data == null) {
               // No user info, navigate to LoginScreen after delay
-              Future.delayed(const Duration(seconds: 6), () {
+              Future.delayed(const Duration(seconds: 5), () {
                 Get.off(() => const LoginScreen());
               });
               return Column(

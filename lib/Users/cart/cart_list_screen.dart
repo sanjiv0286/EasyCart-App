@@ -23,10 +23,11 @@ class CartListScreen extends StatefulWidget {
 class _CartListScreenState extends State<CartListScreen> {
   final currentOnlineUser = Get.put(CurrentUser());
   final cartListController = Get.put(CartListController());
+  // ***************************
+  // final double responsivePadding = MediaQuery.of(context).size.width * 0.02;
 
   getCurrentUserCartList() async {
     List<Cart> cartListOfCurrentUser = [];
-
     try {
       var res = await http.post(
         Uri.parse(API.getCartList),
@@ -302,7 +303,6 @@ class _CartListScreenState extends State<CartListScreen> {
                                   cartListController
                                       .addSelectedItem(cartModel.cart_id!);
                                 }
-
                                 calculateTotalAmount();
                               },
                               icon: Icon(
@@ -354,7 +354,11 @@ class _CartListScreenState extends State<CartListScreen> {
                                   //+ 2 -
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(10),
+                                      // padding: const EdgeInsets.all(10),
+                                      padding: EdgeInsets.all(
+                                        MediaQuery.of(context).size.width *
+                                            0.02,
+                                      ),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,

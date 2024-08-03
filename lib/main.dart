@@ -1,4 +1,7 @@
 // import 'package:device_preview/device_preview.dart';
+// import 'package:easymart/Users/UserPreferences/user_preferences.dart';
+// import 'package:easymart/Users/authentication/login.dart';
+// import 'package:easymart/Users/fragments/dashboard.dart';
 import 'package:easymart/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,7 +53,18 @@ class MyApp extends StatelessWidget {
       //   builder: (context, dataSnapShot) {
       //     if (dataSnapShot.data == null) {
       //       return const LoginScreen();
-      //       // return const SplashScreen();
+      //     } else {
+      //       return DashboardOfFragments();
+      //     }
+      //   },
+      // ),
+      // *****************************************************
+      // home: FutureBuilder(
+      //   future: RememberUserPrefs.readUserInfo(),
+      //   builder: (context, dataSnapShot) {
+      //     if (dataSnapShot.data == null) {
+      //       // return const LoginScreen();
+      //       return const SplashScreen();
       //     } else {
       //       return DashboardOfFragments();
       //     }

@@ -1,11 +1,7 @@
 # EasyCart - An Online Clothes Shop App
-
-
 <!-- **Technologies Used**: Flutter, Dart, PHP, SQL, MySQL, XAMPP local host server, REST API, GetX State Management -->
 
 ## Overview
-
-
 
 EasyCart is an online shopping app specializing in clothes. The app is designed to provide a seamless shopping experience with various features such as user authentication, search functionality, cart management, and order tracking. It integrates with third-party APIs for enhanced functionality and utilizes a PHP and MySQL backend hosted on a XAMPP server for local development and testing.
 
@@ -141,5 +137,4 @@ For any inquiries or feedback, please contact me at:
 
 <img src= "https://visitor-badge.laobi.icu/badge?page_id=sanjiv0286/EasyCart-App" alt="visitor badge"/> |  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/sanjiv0286/EasyCart-App/main)
 #
-## Just follow☝️ me and Star⭐ my repository 
-
+## Just follow☝️ me and Star⭐ my repository

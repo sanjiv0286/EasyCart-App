@@ -1,5 +1,4 @@
 # EasyCart - An Online Clothes Shop App
-<!-- **Technologies Used**: Flutter, Dart, PHP, SQL, MySQL, XAMPP local host server, REST API, GetX State Management -->
 
 ## Overview
 
@@ -28,9 +27,7 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
   
 </td>
 </table>
-<!--
-![App Logo]()
--->
+
 
 ## Demo
 <!--
@@ -63,36 +60,39 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
 - **Vs Code**
 
 ## Screenshots
-<!--
-******************
-<table>
- <td>
-  <div>
-    <img src="image/Kalamappicon.png" width="300" height="350" alt="App">
-  </div>
-  <div>AppIcon</div>
-  
-</td>
- <tr>
- <hr>
-  
-<!--   <td><img src= "image/Kalamappicon.png" width="300" height="350" alt= "AppIcon"></td> -->
- <!--
- ******************
-  <td><img src= "image/photo1.png" width="300" height="350"></td>
-  <td><img src = "image/photo2.png" width="300" height="350"></td>
-  <td><img src = "image/photo3.png" width="300" height="350"></td>
-</tr> 
- </table>
-<hr>
- 
-<table>
- <tr>
-    <td><img src="image/photo4.png" width="800" height="500"></td>
-</tr>
- </table>
--->
 
+<table>
+  <tr>
+    <td><img src="screenshots/1.jpg" width="600" height="450" alt="App"></td>
+    <td><img src="screenshots/2.jpg" width="600" height="450" alt="App"></td>
+    <td><img src="screenshots/3.jpg" width="600" height="450" alt="App"></td>
+    <td><img src="screenshots/4.jpg" width="600" height="450"></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/5.jpg" width="600" height="450"></td>
+    <td><img src="screenshots/6.jpg" width="600" height="450"></td>
+    <td><img src="screenshots/7.jpg" width="600" height="450"></td>
+    <td><img src="screenshots/8.jpg" width="600" height="450"></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/9.jpg" width="600" height="450"></td>
+    <td><img src="screenshots/10.jpg" width="600" height="450"></td>
+    <td><img src="screenshots/11.jpg" width="600" height="450"></td>
+    <td><img src="screenshots/12.jpg" width="600" height="450"></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/13.jpg" width="600" height="450"></td>
+    <td><img src="screenshots/14.jpg" width="600" height="450"></td>
+<!--     <td><img src="screenshots/11.jpg" width="600" height="450"></td>
+    <td><img src="screenshots/12.jpg" width="600" height="450"></td> -->
+  </tr>
+</table>
+<hr>
+<table>
+ <tr>
+    <td><img src="screenshots/15.jpg" width="800" height="500"></td>
+</tr>
+</table>
 
 ## Installation
 

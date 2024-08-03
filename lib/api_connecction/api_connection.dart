@@ -8,7 +8,7 @@
 //   static const validateEmail = "$hostConnect/user/validate_email.php";
 // }
 class API {
-  static const hostConnect = "http://192.168.213.21/api_clothes_store";
+  static const hostConnect = "http://192.168.0.102/api_clothes_store";
   // static const hostConnect =
   // "http://php119.infinityfreeapp.com/185.27.134.144/api_clothes_store";
 

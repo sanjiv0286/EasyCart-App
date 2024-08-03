@@ -1,5 +1,4 @@
 # EasyCart - An Online Clothes Shop App
-<!-- **Technologies Used**: Flutter, Dart, PHP, SQL, MySQL, XAMPP local host server, REST API, GetX State Management -->
 
 ## Overview
 
@@ -14,9 +13,6 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
 - **Favorites**: Add items to a wishlist for future reference.
 - **Admin Portal**: Admin functionalities to manage orders and upload new items.
 
-
-
-
 ### App Icon
 
 <table>
@@ -24,15 +20,11 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
   <div>
     <img src="https://i.pinimg.com/564x/7a/2b/7e/7a2b7e0bb32c71f6be74a0cc47e796d9.jpg" width="350" height="350" alt="App">
   </div>
-  <div></div>
-  
 </td>
 </table>
-<!--
-![App Logo]()
--->
 
 ## Demo
+
 <!--
 
 ![kalamQuiz2](https://user-images.githubusercontent.com/48892208/102683677-ac19d100-41f8-11eb-9e8a-87d03c3460a1.gif)
@@ -63,27 +55,8 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
 - **Vs Code**
 
 ## Screenshots
-<!--
-******************
-<table>
- <td>
-  <div>
-    <img src="image/Kalamappicon.png" width="300" height="350" alt="App">
-  </div>
-  <div>AppIcon</div>
-  
-</td>
- <tr>
- <hr>
-  
-<!--   <td><img src= "image/Kalamappicon.png" width="300" height="350" alt= "AppIcon"></td> -->
- <!--
- ******************
-  <td><img src= "image/photo1.png" width="300" height="350"></td>
-  <td><img src = "image/photo2.png" width="300" height="350"></td>
-  <td><img src = "image/photo3.png" width="300" height="350"></td>
-</tr> 
- </table>
+
+
 <hr>
  
 <table>
@@ -91,8 +64,6 @@ EasyCart is an online shopping app specializing in clothes. The app is designed 
     <td><img src="image/photo4.png" width="800" height="500"></td>
 </tr>
  </table>
--->
-
 
 ## Installation
 
@@ -101,6 +72,7 @@ To run this project locally, follow these steps:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/yourusername/easycart-app.git
+   ```
 2. **Navigate to the project directory:**
    ```bash
    cd easycart-app
@@ -124,17 +96,14 @@ To run this project locally, follow these steps:
 - Track Orders: View the status of placed orders and review order history.
 - Admin Functions: Admins can log in to manage orders and add new products.
 
-
-
 ## Contact
 
 For any inquiries or feedback, please contact me at:
 
-- **Email**: sanjiv21101@iiitnr.edu.in
+- **Email**: [Email](sanjiv21101@iiitnr.edu.in)
 - **LinkedIn**: [LinkedIn](https://www.linkedin.com/in/sanjiv-kushwaha101/)
 - **GitHub**: [GitHub](https://github.com/sanjiv0286)
 
+<img src= "https://visitor-badge.laobi.icu/badge?page_id=sanjiv0286/EasyCart-App" alt="visitor badge"/> | ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/sanjiv0286/EasyCart-App/main)
 
-<img src= "https://visitor-badge.laobi.icu/badge?page_id=sanjiv0286/EasyCart-App" alt="visitor badge"/> |  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/sanjiv0286/EasyCart-App/main)
-#
 ## Just follow☝️ me and Star⭐ my repository
